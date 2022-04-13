@@ -36,7 +36,7 @@ app.get('/schoolList', (req, res) => {
   })
 })
 
-const server = app.listen(4096, () => {
+const server = app.listen(3000, () => {
   const host = server.address().address
   const port = server.address().port
 
