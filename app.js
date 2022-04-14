@@ -94,6 +94,26 @@ function homepageViews_params_isValid (req) {
   }
 }
 
+app.get('/updateViews', (req, res) => {
+  const currentDay = dayjs().format('YYYY-MM-DD')
+  const conn = connect()
+  conn.query(`SELECT * FROM lc_home_views WHERE home_views_date = '${currentDay}'`, (err, results1) => {
+    if (err) {
+      res.json(errorResJson(1, err))
+    } else {
+      const views = results1[0].home_views_amount + 1 
+      conn.query(`UPDATE lc_home_views set home_views_amount = ${views} where home_views_date = '${currentDay}'`, (err, results2) => {
+        if (err) {
+          res.json(errorResJson(1, err))
+        } else {
+          res.json(successResJson(results2))
+        }
+        conn.end()
+      })
+    }
+  })
+})
+
 const server = app.listen(3000, () => {
   const host = server.address().address
   const port = server.address().port
