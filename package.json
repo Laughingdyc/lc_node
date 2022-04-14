@@ -9,6 +9,8 @@
   "author": "DoYouCare",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.0",
     "express": "^4.17.3",
     "mysql": "^2.18.1"
   }
